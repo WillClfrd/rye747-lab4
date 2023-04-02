@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">rye747-lab4</string>
+    <string name="temp_string">placeholder</string>
+    <string name="starfleet_command_description">image of the Starfleet Command logo</string>
+    <string name="enterprise1">USS Enterprise NCC-1701-A</string>
+    <string name="enterprise2">USS Enterprise NCC-1701-D</string>
+    <string name="voyager">Uss Voyager NCC-74656</string>
 </resources>

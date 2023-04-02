@@ -1,3 +1,4 @@
+package edu.utsa.cs3443.rye747_lab4.model;
 /**
  * This class represents CrewMember objects. 
  * Each CrewMember object can be instantiated in one of two ways, with a name, a position, a rank, and a species being required, and an assignment being optional. 

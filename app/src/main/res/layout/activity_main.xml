@@ -1,8 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
     android:layout_width="fill_parent"
     android:gravity="center_horizontal"
     >
 
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:srcCompat="@drawable/starfleet_command"
+            android:contentDescription="@string/starfleet_command_description"/>
+
+        <Button
+            android:id="@+id/enterprise1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enterprise1" />
+
+        <Button
+            android:id="@+id/enterprise2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enterprise2" />
+
+        <Button
+            android:id="@+id/voyager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/voyager" />
+    </LinearLayout>
 </ScrollView>

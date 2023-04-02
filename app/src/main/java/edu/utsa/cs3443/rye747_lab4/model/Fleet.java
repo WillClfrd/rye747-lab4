@@ -1,3 +1,5 @@
+package edu.utsa.cs3443.rye747_lab4.model;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

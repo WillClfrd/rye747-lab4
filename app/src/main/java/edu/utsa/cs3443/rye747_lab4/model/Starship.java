@@ -1,3 +1,4 @@
+package edu.utsa.cs3443.rye747_lab4.model;
 import java.util.ArrayList;
 /**
  * This class represents Starship objects. 
