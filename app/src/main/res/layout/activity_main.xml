@@ -23,18 +23,18 @@
             android:id="@+id/enterprise1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/enterprise1" />
+            android:text="@string/temp_string" />
 
         <Button
             android:id="@+id/enterprise2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/enterprise2" />
+            android:text="@string/temp_string" />
 
         <Button
             android:id="@+id/voyager"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/voyager" />
+            android:text="@string/temp_string" />
     </LinearLayout>
 </ScrollView>

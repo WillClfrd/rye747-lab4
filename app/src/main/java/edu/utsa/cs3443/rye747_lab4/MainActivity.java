@@ -15,9 +15,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         controller = new MainController(this);
+
         Button voyager = findViewById(R.id.voyager);
         Button enterprise_1 = findViewById(R.id.enterprise1);
         Button enterprise_2 = findViewById(R.id.enterprise2);
+
         setupButton(voyager);
         setupButton(enterprise_1);
         setupButton(enterprise_2);

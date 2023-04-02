@@ -1,7 +1,9 @@
 package edu.utsa.cs3443.rye747_lab4.model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import android.content.res.AssetManager;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -64,31 +66,44 @@ public class Fleet {
 	/**
 	 * Loads the files contained within the specified directory in order to open the files, parse the data contained within, and create new Starship or CrewMember objects based on the data.
 	 * 
-	 * @param dirName the directory name that will be checked for Starship data files
-	 * @throws FileNotFoundException Error thrown when failing to open the specified file
+	 * @param manager the asset manager used to retrieve the necessary data files
+	 * @throws IOException Error thrown when failing to open the specified file
 	 */
-	public void loadStarships(String dirName) throws FileNotFoundException {
-		File dataDir = new File(dirName);
-		String[] filenames = dataDir.list();
+	public void loadStarships(AssetManager manager) throws IOException {
+		InputStream inFile = manager.open("fleet.csv");
+		Scanner read = new Scanner(inFile);
 		String[] tokens;
 		String lineIn;
-		
-		for(int i = 0; i < filenames.length; ++i) {
-			try {
-				Scanner read = new Scanner(new File(dirName + "/" + filenames[i]));
-				int n = 0;
-				while(read.hasNextLine()) {
-					lineIn = read.nextLine();
-					tokens = lineIn.split(",");
-					assignData(tokens, n);
-					++n;
+		int i;
+
+		while(read.hasNext()){
+			lineIn = read.nextLine();
+			tokens = lineIn.split(",");
+			Starship tempShip = new Starship(tokens[0], tokens[1], tokens[2]);
+			addStarship(tempShip);
+		}
+		inFile.close();
+		read.close();
+		inFile = manager.open("personnel.csv");
+		read = new Scanner(inFile);
+		while(read.hasNext()){
+			lineIn = read.nextLine();
+			tokens = lineIn.split(",");
+			for(i = 0; i < fleet.size(); ++i) {
+				if (tokens[3].equals(fleet.get(i).getRegistry())){
+					if(tokens.length == 4) {
+						CrewMember newCrew = new CrewMember(tokens[0], tokens[1], tokens[2], tokens[3]);
+						fleet.get(i).addCrewMember(newCrew);
+					}
+					else if(tokens.length == 5){
+						CrewMember newCrew = new CrewMember(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4]);
+						fleet.get(i).addCrewMember(newCrew);
+					}
 				}
-				read.close();
-			}
-			catch(FileNotFoundException e){
-				e.printStackTrace();
 			}
 		}
+		inFile.close();
+		read.close();
 	}
 	
 	/**
