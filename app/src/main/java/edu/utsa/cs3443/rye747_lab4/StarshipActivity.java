@@ -1,12 +1,17 @@
 package edu.utsa.cs3443.rye747_lab4;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+import static android.widget.LinearLayout.VERTICAL;
 
 import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,7 +29,7 @@ public class StarshipActivity extends AppCompatActivity{
         private int shipInd;
         private Fleet fleet;
         private AssetManager manager;
-        private LinearLayout crewll;
+        private LinearLayout ll;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -32,7 +37,7 @@ public class StarshipActivity extends AppCompatActivity{
 
             controller = new StarshipController(this);
             manager = getAssets();
-            crewll = findViewById(R.id.crew_info);
+            ll = findViewById(R.id.crew_info);
 
             shipReg = getIntent().getStringExtra(key);
 
@@ -64,27 +69,50 @@ public class StarshipActivity extends AppCompatActivity{
         }
 
         private void addCrewmembers(){
+            LinearLayout crewll;
+            LinearLayout infoll;
             TextView tv1;
             TextView tv2;
-            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(MATCH_PARENT, 100);
+            ImageView iv;
+
+            LinearLayout.LayoutParams ll_lp = new LinearLayout.LayoutParams(MATCH_PARENT, 300);
+            ViewGroup.LayoutParams iv_lp = new ViewGroup.LayoutParams(225, 300);
+            ViewGroup.LayoutParams tv_lp = new ViewGroup.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
 
             for(int i = 0; i < fleet.getStarship(this.shipInd).getNumberOfPersonnel(); ++i){
-                tv1 = new TextView(this);
-                tv2 = new TextView(this);
-                String crewString = fleet.getStarship(shipInd).getCrewMember(i).getPosition() + "\n" + fleet.getStarship(shipInd).getCrewMember(i).getName();
-//                String tempString = String.valueOf(shipInd);
+                crewll = new LinearLayout(this);
+                crewll.setOrientation(LinearLayout.HORIZONTAL);
+                crewll.setLayoutParams(ll_lp);
+                crewll.setPadding(30,10,0,10);
+                ll.addView(crewll);
 
-                tv1.setTextSize(30);
+                Bitmap bm = BitmapFactory.decodeResource(getResources(), pickCrewPicture(i));
+                Bitmap scaledBM = Bitmap.createScaledBitmap(bm,225,300, true);
+                iv = new ImageView(this);
+                iv.setImageBitmap(scaledBM);
+                iv.setLayoutParams(iv_lp);
+                crewll.addView(iv);
+
+                infoll = new LinearLayout(this);
+                infoll.setLayoutParams(ll_lp);
+                infoll.setPadding(30,0,0,0);
+                infoll.setOrientation(VERTICAL);
+                crewll.addView(infoll);
+
+                tv1 = new TextView(this);
+                tv1.setTextSize(25);
                 tv1.setTextColor(Color.BLACK);
                 tv1.setText(fleet.getStarship(shipInd).getCrewMember(i).getPosition());
-                tv1.setPadding(20,0,0,0);
-                crewll.addView(tv1, lp);
+                tv1.setLayoutParams(tv_lp);
+                infoll.addView(tv1);
 
-                tv2.setTextSize(25);
+                tv2 = new TextView(this);
+                tv2.setTextSize(15);
                 tv2.setTextColor(Color.BLACK);
-                tv2.setText(fleet.getStarship(shipInd).getCrewMember(i).getName());
-                tv2.setPadding(20,0,0,0);
-                crewll.addView(tv2, lp);
+                String tempString = fleet.getStarship(shipInd).getCrewMember(i).getRank() + " " + fleet.getStarship(shipInd).getCrewMember(i).getName();
+                tv2.setText(tempString);
+                tv2.setLayoutParams(tv_lp);
+                infoll.addView(tv2);
             }
         }
 
@@ -93,5 +121,82 @@ public class StarshipActivity extends AppCompatActivity{
             String shipString = fleet.getStarship(shipInd).getName() + " " + fleet.getStarship(shipInd).getRegistry();
 //            String tempString = String.valueOf(shipInd);
             tv.setText(shipString);
+        }
+
+        private int pickCrewPicture(int crewInd){
+            if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("kirk")){
+                return R.drawable.kirk;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("spock")){
+                return R.drawable.spock;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("mccoy")){
+                return R.drawable.mccoy;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("scott")){
+                return R.drawable.scott;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("picard")){
+                return R.drawable.picard;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("riker")){
+                return R.drawable.riker;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("crusher")){
+                return R.drawable.crusher;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("forge")){
+                return R.drawable.la_forge;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("troi")){
+                return R.drawable.troi;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("worf")){
+                return R.drawable.worf;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("data")){
+                return R.drawable.data;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("yar")){
+                return R.drawable.yar;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("chapel")){
+                return R.drawable.chapel;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("torres")){
+                return R.drawable.torres;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("paris")){
+                return R.drawable.paris;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("doctor")){
+                return R.drawable.doctor;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("uhura")){
+                return R.drawable.uhura;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("neelix")){
+                return R.drawable.neelix;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("sulu")){
+                return R.drawable.sulu;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("kes")){
+                return R.drawable.kes;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("chekov")){
+                return R.drawable.chekov;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("janeway")){
+                return R.drawable.janeway;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("chakotay")){
+                return R.drawable.chakotay;
+            }
+            else if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("tuvok")){
+                return R.drawable.tuvok;
+            }
+
+            return 0;
         }
 }
