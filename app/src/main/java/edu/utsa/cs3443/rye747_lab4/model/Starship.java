@@ -88,7 +88,10 @@ public class Starship {
 	public String getStarshipClass() {
 		return this.starshipClass;
 	}
-	
+
+	public CrewMember getCrewMember(int ind){
+		return Crew.get(ind);
+	}
 	/**
 	 * Changes the value of the Starship object name attribute to the value specified by newName
 	 * 

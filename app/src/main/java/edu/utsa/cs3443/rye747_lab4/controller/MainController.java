@@ -15,6 +15,7 @@ public class MainController implements View.OnClickListener{
     private MainActivity activity;
     private Fleet fleet;
     private AssetManager manager;
+    private String key = "ship_registry";
     public MainController(MainActivity activity){
         this.activity = activity;
         this.manager =this.activity.getAssets();
@@ -28,15 +29,17 @@ public class MainController implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         Intent intent = new Intent(activity, StarshipActivity.class);
-        activity.startActivity(intent);
-        if(view.getId() == R.id.voyager){
-
+        if(view.getId() == R.id.NCC1701A){
+            intent.putExtra(key, "NCC-1701-A");
+            activity.startActivity(intent);
         }
-        else if(view.getId() == R.id.enterprise1){
-
+        else if(view.getId() == R.id.NCC75646){
+            intent.putExtra(key, "NCC-74656");
+            activity.startActivity(intent);
         }
-        else if(view.getId() == R.id.enterprise2){
-
+        else if(view.getId() == R.id.NCC1701D){
+            intent.putExtra(key, "NCC-1701-D");
+            activity.startActivity(intent);
         }
     }
 }

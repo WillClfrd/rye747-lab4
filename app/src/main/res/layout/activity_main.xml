@@ -20,21 +20,24 @@
             android:contentDescription="@string/starfleet_command_description"/>
 
         <Button
-            android:id="@+id/enterprise1"
+            android:id="@+id/NCC1701A"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/temp_string" />
+            android:textSize="20sp"
+            android:text="@string/enterprise1" />
 
         <Button
-            android:id="@+id/enterprise2"
+            android:id="@+id/NCC1701D"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/temp_string" />
+            android:textSize="20sp"
+            android:text="@string/enterprise2" />
 
         <Button
-            android:id="@+id/voyager"
+            android:id="@+id/NCC75646"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/temp_string" />
+            android:textSize="20sp"
+            android:text="@string/voyager" />
     </LinearLayout>
 </ScrollView>

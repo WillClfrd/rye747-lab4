@@ -70,6 +70,10 @@ public class Fleet {
 	 * @throws IOException Error thrown when failing to open the specified file
 	 */
 	public void loadStarships(AssetManager manager) throws IOException {
+		if(fleet == null){
+			fleet = new ArrayList<Starship>();
+		}
+
 		InputStream inFile = manager.open("fleet.csv");
 		Scanner read = new Scanner(inFile);
 		String[] tokens;
@@ -148,6 +152,10 @@ public class Fleet {
 	 */
 	public void setName(String newName) {
 		this.name = newName;
+	}
+
+	public Starship getStarship(int ind){
+		return fleet.get(ind);
 	}
 	
 }

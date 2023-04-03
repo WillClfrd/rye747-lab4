@@ -16,7 +16,7 @@ public class StarshipController implements View.OnClickListener{
     public StarshipController(StarshipActivity activity){
         this.activity = activity;
         this.manager = this.activity.getAssets();
-        Fleet fleet = new Fleet("United Federation of Planets");
+        fleet = new Fleet("United Federation of Planets");
 
         try {
             fleet.loadStarships(manager);
@@ -28,5 +28,16 @@ public class StarshipController implements View.OnClickListener{
     @Override
     public void onClick(View view) {
 
+    }
+
+    private int findShip(String reg){
+        int i;
+
+        for(i = 0; i < fleet.getSizeOfFleet(); ++i){
+            if(fleet.getStarship(i).getRegistry().equals(reg)){
+                return i;
+            }
+        }
+        return 0;
     }
 }
