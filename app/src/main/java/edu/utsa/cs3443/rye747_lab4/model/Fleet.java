@@ -64,7 +64,7 @@ public class Fleet {
 	}
 	
 	/**
-	 * Loads the files contained within the specified directory in order to open the files, parse the data contained within, and create new Starship or CrewMember objects based on the data.
+	 * Loads the specified asset files using an AssetManager to open the files. After opening the files this method will parse the data contained within, and create new Starship and CrewMember objects based on the data within the opened files.
 	 * 
 	 * @param manager the asset manager used to retrieve the necessary data files
 	 * @throws IOException Error thrown when failing to open the specified file
@@ -111,32 +111,6 @@ public class Fleet {
 	}
 	
 	/**
-	 * Takes the data read in from the loadStarships method and creates either a new Starship object or a new CrewMember object based on the specifics of that data and the state parameter. 
-	 * Once an object is created it is added to the relevant ArrayList. (fleet for Starship objects, Crew for CrewMember objects)
-	 * 
-	 * @param tokens array of strings obtained by using split method on read in data from loadStarships method. Used to create either Starship or CrewMember objects
-	 * @param state integer used to determine what object to create
-	 */
-	private void assignData(String[] tokens, int state) {
-		switch(state) {
-			case 0:
-				Starship tempShip = new Starship(tokens[0], tokens[1], tokens[2]);
-				addStarship(tempShip);
-				break;
-			default:
-				if(tokens.length == 4) {
-					CrewMember newCrew = new CrewMember(tokens[0], tokens[1], tokens[2], tokens[3]);
-					fleet.get(fleet.size() - 1).addCrewMember(newCrew);
-				}
-				else if(tokens.length == 5){
-					CrewMember newCrew = new CrewMember(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4]);
-					fleet.get(fleet.size()).addCrewMember(newCrew);
-				}	
-				break;
-		}
-	}
-	
-	/**
 	 * Returns the Fleet object name attribute. 
 	 * 
 	 * @return the string type name attribute for the Fleet object
@@ -154,6 +128,12 @@ public class Fleet {
 		this.name = newName;
 	}
 
+	/**
+	 * Returns the Starship object located at the specified index of the fleet ArrayList
+	 *
+	 * @param ind the index of the Starship object that is to be returned
+	 * @return the Starship object at the index specified by ind
+	 */
 	public Starship getStarship(int ind){
 		return fleet.get(ind);
 	}

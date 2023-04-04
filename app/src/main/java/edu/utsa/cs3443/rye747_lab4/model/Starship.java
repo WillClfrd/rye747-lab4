@@ -89,6 +89,12 @@ public class Starship {
 		return this.starshipClass;
 	}
 
+	/**
+	 * This method is used to return the CrewMember object at the specified index of the ArrayList Crew
+	 *
+	 * @param ind the index of the CrewMember object to be returned
+	 * @return the CrewMember object at the specified index
+	 */
 	public CrewMember getCrewMember(int ind){
 		return Crew.get(ind);
 	}
