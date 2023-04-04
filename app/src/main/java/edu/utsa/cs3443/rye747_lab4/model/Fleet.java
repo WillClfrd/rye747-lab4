@@ -13,7 +13,7 @@ import java.util.Scanner;
  * Fleet objects contain an ArrayList of Starship objects. 
  * 
  * @author William Clifford (rye747)
- * UTSA CS 3443 - Lab 2
+ * UTSA CS 3443 - Lab 4
  * Spring 2023
  */
 public class Fleet {

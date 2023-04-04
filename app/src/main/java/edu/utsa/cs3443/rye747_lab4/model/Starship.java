@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Starship objects also contain an ArrayList of CrewMember objects. 
  * 
  * @author William Clifford (rye747)
- * UTSA CS 3443 - Lab 2
+ * UTSA CS 3443 - Lab 4
  * Spring 2023
  */
 public class Starship {

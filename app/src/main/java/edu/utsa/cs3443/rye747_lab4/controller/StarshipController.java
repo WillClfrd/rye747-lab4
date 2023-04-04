@@ -20,6 +20,16 @@ import edu.utsa.cs3443.rye747_lab4.R;
 import edu.utsa.cs3443.rye747_lab4.StarshipActivity;
 import edu.utsa.cs3443.rye747_lab4.model.Fleet;
 
+/**
+ * This class represents StarshipController objects.
+ * Each StarshipController object is instantiated with a StarshipActivity object.
+ * StarshipController objects are responsible for implementing the OnClickListener for view elements declared in the StarshipActivity object that is used in the StarshipController constructor.
+ * StarshipController objects are also responsible for modifying the view for the Starship and CrewMember objects in the fleet attribute
+ *
+ * @author William Clifford (rye747)
+ * UTSA CS 3443 - Lab 4
+ * Spring 2023
+ */
 public class StarshipController implements View.OnClickListener{
     private StarshipActivity activity;
     private AssetManager manager;
@@ -28,6 +38,13 @@ public class StarshipController implements View.OnClickListener{
     private String shipReg;
     private String key = "ship_registry";
     private int shipInd;
+
+    /**
+     * The StarshipController constructor creates a new StarshipController object and initializes the activity, manager, fleet, ll, shipReg, and shipInd attributes
+     * The StarshipController contructor also calls the addCrewMembersView and setHeader methods in order to alter the activity attribute
+     *
+     * @param activity the StarshipActivity object used to initialize the activity attribute of the StarshipController
+     */
     public StarshipController(StarshipActivity activity){
         this.activity = activity;
         this.manager = this.activity.getAssets();
@@ -47,11 +64,22 @@ public class StarshipController implements View.OnClickListener{
         setHeader();
     }
 
+    /**
+     * The StarshipController onClick method handles click events for the view parameter from the activity attribute and directs the flow of the program according to which button was clicked.
+     *
+     * @param view the View object that is passed as a parameter from the click event
+     */
     @Override
     public void onClick(View view) {
 
     }
 
+    /**
+     * This method returns the index in the fleet attribute of the StarshipObject that matches the value of the reg parameter
+     *
+     * @param reg the value used for comparison to find matching values
+     * @return the index of the matching Starship object in fleet, or 0 if no matching object is found
+     */
     private int findShip(String reg){
         int i;
 
@@ -63,6 +91,10 @@ public class StarshipController implements View.OnClickListener{
         return 0;
     }
 
+    /**
+     * This method is used to add views to the ll attribute for each CrewMember object contained within the Starship object at the fleet index shipInd.
+     * This method will add an ImageView object for the CrewMember picture, a linear layout that will contain the CrewMember name, rank, and position information, and two TextView objects that are used to display the CrewMember name, rank, and position attributes.
+     */
     private void addCrewmembersView(){
         LinearLayout crewll;
         LinearLayout infoll;
@@ -114,12 +146,21 @@ public class StarshipController implements View.OnClickListener{
         }
     }
 
+    /**
+     * This method is used to alter the text of the TextView object that corresponds to the id R.id.Header, to display the name and registry attributes of the Starship object in fleet at the index shipInd.
+     */
     private void setHeader(){
         TextView tv = activity.findViewById(R.id.Header);
         String shipString = fleet.getStarship(shipInd).getName() + " " + fleet.getStarship(shipInd).getRegistry();
         tv.setText(shipString);
     }
 
+    /**
+     * This method is used to retrieve the drawable resource that corresponds to the fleet.getStarship(shipInd).getCrewMember(crewInd) CrewMember object.
+     *
+     * @param crewInd the index of the CrewMember object to be compared to the drawable resource file names
+     * @return the id that corresponds to the corresponding drawable resource
+     */
     private int pickCrewPicture(int crewInd){
         if(fleet.getStarship(shipInd).getCrewMember(crewInd).getName().toLowerCase().contains("kirk")){
             return R.drawable.kirk;

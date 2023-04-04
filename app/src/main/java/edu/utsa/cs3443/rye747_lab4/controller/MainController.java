@@ -4,28 +4,39 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.view.View;
 
-import java.io.IOException;
-
 import edu.utsa.cs3443.rye747_lab4.MainActivity;
 import edu.utsa.cs3443.rye747_lab4.R;
 import edu.utsa.cs3443.rye747_lab4.StarshipActivity;
-import edu.utsa.cs3443.rye747_lab4.model.Fleet;
 
+/**
+ * This class represents MainController objects.
+ * Each MainController object is instantiated with a MainActivity object.
+ * MainController objects are responsible for implementing the OnClickListener for view elements declared in the MainActivity object that is used in the MainController constructor.
+ *
+ * @author William Clifford (rye747)
+ * UTSA CS 3443 - Lab 4
+ * Spring 2023
+ */
 public class MainController implements View.OnClickListener{
     private MainActivity activity;
-    private Fleet fleet;
     private AssetManager manager;
     private String key = "ship_registry";
+
+    /**
+     * The MainController constructor creates a new MainController object and initializes the activity and manager attributes
+     *
+     * @param activity the MainActivity object used to initialize the activity attribute of the MainController
+     */
     public MainController(MainActivity activity){
         this.activity = activity;
         this.manager =this.activity.getAssets();
-        Fleet fleet = new Fleet("United Federation of Planets");
-        try {
-            fleet.loadStarships(manager);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
+
+    /**
+     * The MainController onClick method handles click events for the view parameter from the activity attribute and directs the flow of the program according to which button was clicked.
+     *
+     * @param view the View object that is passed as a parameter from the click event
+     */
     @Override
     public void onClick(View view) {
         Intent intent = new Intent(activity, StarshipActivity.class);
