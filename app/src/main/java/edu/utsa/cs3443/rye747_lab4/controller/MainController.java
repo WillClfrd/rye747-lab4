@@ -1,7 +1,6 @@
 package edu.utsa.cs3443.rye747_lab4.controller;
 
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.view.View;
 
 import edu.utsa.cs3443.rye747_lab4.MainActivity;
@@ -19,7 +18,6 @@ import edu.utsa.cs3443.rye747_lab4.StarshipActivity;
  */
 public class MainController implements View.OnClickListener{
     private MainActivity activity;
-    private AssetManager manager;
     private String key = "ship_registry";
 
     /**
@@ -29,7 +27,6 @@ public class MainController implements View.OnClickListener{
      */
     public MainController(MainActivity activity){
         this.activity = activity;
-        this.manager =this.activity.getAssets();
     }
 
     /**

@@ -53,7 +53,17 @@ public class Fleet {
 	public int getSizeOfFleet() {
 		return fleet.size();
 	}
-	
+
+	/**
+	 * Returns the Starship object located at the specified index of the fleet ArrayList
+	 *
+	 * @param ind the index of the Starship object that is to be returned
+	 * @return the Starship object at the index specified by ind
+	 */
+	public Starship getStarship(int ind){
+		return fleet.get(ind);
+	}
+
 	/**
 	 * Adds a Starship object to the fleet ArrayList. 
 	 * 
@@ -126,16 +136,6 @@ public class Fleet {
 	 */
 	public void setName(String newName) {
 		this.name = newName;
-	}
-
-	/**
-	 * Returns the Starship object located at the specified index of the fleet ArrayList
-	 *
-	 * @param ind the index of the Starship object that is to be returned
-	 * @return the Starship object at the index specified by ind
-	 */
-	public Starship getStarship(int ind){
-		return fleet.get(ind);
 	}
 	
 }
